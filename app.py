@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
-from settings import *
+
+app = Flask(__name__)
 
 users = [ 
   {'name' : 'user1'},
