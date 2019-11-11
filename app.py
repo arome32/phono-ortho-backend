@@ -16,7 +16,7 @@ def hello_name(name):
 @app.route('/user', methods=['POST'])
 def add_user():
   new_user = request.json
-  #   create_csv(new_user.words)
+  create_csv(new_user.words)
   return jsonify(new_user)
 
 def create_csv(words):
