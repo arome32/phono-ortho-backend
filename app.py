@@ -6,12 +6,12 @@ cors = CORS(app)
 
 @app.route('/')
 def hello():
-    return jsonify({ hello: 'Hello World!' })
+    return jsonify({ 'hello': 'Hello World!' })
 
 
 @app.route('/<name>')
 def hello_name(name):
-    return jsonify({ name: name })
+    return jsonify({ 'name': name })
 
 @app.route('/user', methods=['POST'])
 def add_user():
