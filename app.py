@@ -20,7 +20,7 @@ def add_user():
   return jsonify(new_user)
 
 def create_csv(words):
-    file = open('pathname.csv','rw+')
+    file = open('pathname.csv','w+')
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
     count = 0
     for word in words:
