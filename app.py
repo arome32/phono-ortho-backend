@@ -20,12 +20,12 @@ def add_user():
   return jsonify(new_user)
 
 def create_csv(words):
-    # file = open('pathname.csv','rw+')
-    # file.write('ORTHO TARGET,PRODUCTION,T/F')
+    file = open('pathname.csv','rw+')
+    file.write(',ORTHO TARGET,PRODUCTION,T/F')
     count = 0
     for word in words:
         print(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
-        # file.write(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
+        file.write(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
         count += 1
 
 if __name__ == '__main__':
