@@ -24,8 +24,9 @@ def create_csv(words):
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
     count = 0
     for word in words:
-        boolVal = (word.word == word.spelled)
-        file.write(str(count) + ',' + word.word + ',' + word.spelled + ',' + str(boolVal) +',')
+        print('WORD->',word)
+        boolVal = (word['word'] == word['spelled'])
+        file.write(str(count) + ',' + word['word'] + ',' + word['spelled'] + ',' + str(boolVal) +',')
         count += 1
 
 if __name__ == '__main__':
