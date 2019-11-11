@@ -16,7 +16,16 @@ def hello_name(name):
 @app.route('/user', methods=['POST'])
 def add_user():
   new_user = request.json
+  create_csv(new_user.words)
   return jsonify(new_user)
+
+def create_csv(words):
+    file = open('pathname.csv','rw+')
+    file.write('ORTHO TARGET,PRODUCTION,T/F')
+    count = 0
+    for word in words:
+        file.write(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
+        count += 1
 
 if __name__ == '__main__':
     app.run()
