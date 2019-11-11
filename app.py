@@ -24,8 +24,8 @@ def create_csv(words):
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
     count = 0
     for word in words:
-        print(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
-        file.write(count + ',' + word.word + ',' + word.spelled + ',' + (word.word == word.spelled) +',')
+        boolVal = (word.word == word.spelled)
+        file.write(str(count) + ',' + word.word + ',' + word.spelled + ',' + str(boolVal) +',')
         count += 1
 
 if __name__ == '__main__':
