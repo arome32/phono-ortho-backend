@@ -17,7 +17,7 @@ def hello_name(name):
 def add_user():
   new_user = request.json
   print(new_user)
-  create_csv(new_user.words)
+#   create_csv(new_user.words)
   return jsonify(new_user)
 
 def create_csv(words):
