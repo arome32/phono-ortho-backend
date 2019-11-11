@@ -10,12 +10,10 @@ def hello():
 
 
 @app.route('/<name>')
-@cross_origin()
 def hello_name(name):
     return "Hello {}!".format(name)
 
 @app.route('/user', methods=['POST'])
-@cross_origin()
 def add_user():
   new_user = request.json
   return jsonify(new_user)
