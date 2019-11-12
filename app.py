@@ -20,14 +20,21 @@ def add_user():
   return jsonify(new_user)
 
 def create_csv(words):
+    print('here')
     file = open('/tmp/pathname.csv','w+')
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
     count = 0
+    print('here')
     for word in words:
-        print(words[word])
         boolVal = (words[word]['word'] == words[word]['spelled'])
         file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',')
         count += 1
+    print('finished 1')
+    for line in file:
+        print(line)
+    print('finished 2')
+
+
 
 if __name__ == '__main__':
     app.run()
