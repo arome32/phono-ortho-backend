@@ -29,7 +29,10 @@ def create_csv(words):
         boolVal = (words[word]['word'] == words[word]['spelled'])
         file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',')
         count += 1
+    file.close()
     print('finished 1')
+    file = open('/tmp/pathname.csv','r+')
+    print(file)
     for line in file:
         print(line)
     print('finished 2')
