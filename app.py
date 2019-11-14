@@ -45,33 +45,41 @@ def create_csv(words):
     for line in file:
         print(line)
     print('finished 2')
+    sendEmail()
     
 def sendEmail():
+    print('1')
     emailfrom = "aromero.testing@gmail.com"
     emailto = "a.romero032@gmail.com"
     fileToSend = "/tmp/pathname.csv"
     username = "aromero.testing"
     password = "Rocknroll1!2"
-
+    
+    print('2')
     msg = MIMEMultipart()
     msg["From"] = emailfrom
     msg["To"] = emailto
     msg["Subject"] = "help I cannot send an attachment to save my life"
     msg.preamble = "help I cannot send an attachment to save my life"
-    
+    print('3')
+
     fp = open(fileToSend)
+    print('4')
     
     # Note: we should handle calculating the charset
     attachment = MIMEText(fp.read())
     fp.close()
     attachment.add_header("Content-Disposition", "attachment", filename=fileToSend)
     msg.attach(attachment)
-    
+    print('5')
+
     server = smtplib.SMTP("smtp.gmail.com:587")
     server.starttls()
     server.login(username,password)
     server.sendmail(emailfrom, emailto, msg.as_string())
     server.quit()
+    print('6')
+
 
 if __name__ == '__main__':
     app.run()
