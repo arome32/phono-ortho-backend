@@ -25,18 +25,21 @@ def add_user():
 
 def create_csv(user):
     words = user['words']
+    name = user['name']
 
-    file = open('/tmp/pathname.csv','w+')
-    file.write(',ORTHO TARGET,PRODUCTION,T/F,\n')
+    file = open('/tmp/' + name + '_pretest.csv','w+')
+    file.write(',ORTHO TARGET,PRODUCTION,T/F,')
+    file.write('\n')
     count = 0
 
     for word in words:
         boolVal = (words[word]['word'] == words[word]['spelled'])
-        file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',\n')
+        file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',')
+        file.write('\n')
         count += 1
     file.close()
     
-    sendEmail(user['name'])
+    sendEmail(name)
     
 def sendEmail(name):
     emailfrom = "aromero.testing@gmail.com"
