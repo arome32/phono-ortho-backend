@@ -20,15 +20,13 @@ def wakeup():
 @app.route('/user', methods=['POST'])
 def add_user():
   new_user = request.json
-  print(new_user)
+  print('new user' + new_user)
   create_csv(new_user)
   return jsonify(new_user)
 
 def create_csv(user):
     words = user['words']
     name = user['name']
-    print(words)
-    print(name)
 
     file = open('/tmp/' + name + '_pretest.csv','w+')
     file.write(',ORTHO TARGET,PRODUCTION,T/F,')
