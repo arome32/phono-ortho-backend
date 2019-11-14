@@ -13,14 +13,9 @@ from email.mime.text import MIMEText
 app = Flask(__name__)
 cors = CORS(app)
 
-@app.route('/')
-def hello():
-    return jsonify({ 'hello': 'Hello World!' })
-
-
-@app.route('/<name>')
-def hello_name(name):
-    return jsonify({ 'name': name })
+@app.route('/wakeup')
+def wakeup():
+    return jsonify({ 'poop': 'Hello World!' })
 
 @app.route('/user', methods=['POST'])
 def add_user():
@@ -30,57 +25,45 @@ def add_user():
 
 def create_csv(user):
     words = user['words']
-    print('here')
+
     file = open('/tmp/pathname.csv','w+')
-    file.write(',ORTHO TARGET,PRODUCTION,T/F')
+    file.write(',ORTHO TARGET,PRODUCTION,T/F,\n')
     count = 0
-    print('here')
+
     for word in words:
         boolVal = (words[word]['word'] == words[word]['spelled'])
-        file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',')
+        file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',\n')
         count += 1
     file.close()
-    print('finished 1')
-    file = open('/tmp/pathname.csv','r+')
-    print(file)
-    for line in file:
-        print(line)
-    print('finished 2')
+    
     sendEmail(user['name'])
     
 def sendEmail(name):
-    print('1')
     emailfrom = "aromero.testing@gmail.com"
     emailto = "a.romero032@gmail.com"
     fileToSend = "/tmp/pathname.csv"
     username = "aromero.testing"
     password = "Rocknroll1!2"
     
-    print('2')
     msg = MIMEMultipart()
     msg["From"] = emailfrom
     msg["To"] = emailto
     msg["Subject"] = (name + " Pretest Results")
     msg.preamble = (name + " Pretest Results")
-    print('3')
 
     fp = open(fileToSend)
-    print('4')
     
     # Note: we should handle calculating the charset
     attachment = MIMEText(fp.read())
     fp.close()
     attachment.add_header("Content-Disposition", "attachment", filename=fileToSend)
     msg.attach(attachment)
-    print('5')
 
     server = smtplib.SMTP("smtp.gmail.com:587")
     server.starttls()
     server.login(username,password)
     server.sendmail(emailfrom, emailto, msg.as_string())
     server.quit()
-    print('6')
-
 
 if __name__ == '__main__':
     app.run()
