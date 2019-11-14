@@ -15,7 +15,7 @@ cors = CORS(app)
 
 @app.route('/wakeup')
 def wakeup():
-    return jsonify({ 'Hello': ' World!' })
+    return jsonify({ 'wakeup': 'true' })
 
 @app.route('/user', methods=['POST'])
 def add_user():
