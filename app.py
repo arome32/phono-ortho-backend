@@ -26,6 +26,7 @@ def add_user():
 
 def create_csv(user):
     words = user['words']
+    print(words)
     name = user['name']
 
     file = open('/tmp/' + name + '_pretest.csv','w+')
