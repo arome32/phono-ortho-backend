@@ -25,10 +25,11 @@ def hello_name(name):
 @app.route('/user', methods=['POST'])
 def add_user():
   new_user = request.json
-  create_csv(new_user['words'])
+  create_csv(new_user)
   return jsonify(new_user)
 
-def create_csv(words):
+def create_csv(user):
+    words = user.words
     print('here')
     file = open('/tmp/pathname.csv','w+')
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
@@ -45,9 +46,9 @@ def create_csv(words):
     for line in file:
         print(line)
     print('finished 2')
-    sendEmail()
+    sendEmail(user.name)
     
-def sendEmail():
+def sendEmail(name):
     print('1')
     emailfrom = "aromero.testing@gmail.com"
     emailto = "a.romero032@gmail.com"
@@ -59,8 +60,8 @@ def sendEmail():
     msg = MIMEMultipart()
     msg["From"] = emailfrom
     msg["To"] = emailto
-    msg["Subject"] = "help I cannot send an attachment to save my life"
-    msg.preamble = "help I cannot send an attachment to save my life"
+    msg["Subject"] = name, "Pretest Results"
+    msg.preamble = name, "Pretest Results"
     print('3')
 
     fp = open(fileToSend)
