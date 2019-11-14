@@ -20,24 +20,41 @@ def add_user():
   return jsonify(new_user)
 
 def create_csv(words):
-    print('here')
-    file = open('/tmp/pathname.csv','w+')
-    file.write(',ORTHO TARGET,PRODUCTION,T/F')
-    count = 0
-    print('here')
-    for word in words:
-        boolVal = (words[word]['word'] == words[word]['spelled'])
-        file.write(str(count) + ',' + words[word]['word'] + ',' + words[word]['spelled'] + ',' + str(boolVal) +',')
-        count += 1
-    file.close()
-    print('finished 1')
-    file = open('/tmp/pathname.csv','r+')
-    print(file)
-    for line in file:
-        print(line)
-    print('finished 2')
+    import smtplib
+    import mimetypes
+    from email.mime.multipart import MIMEMultipart
+    from email import encoders
+    from email.message import Message
+    from email.mime.audio import MIMEAudio
+    from email.mime.base import MIMEBase
+    from email.mime.image import MIMEImage
+    from email.mime.text import MIMEText
 
+    emailfrom = "aromero.testing@gmail.com"
+    emailto = "a.romero032@gmail.com"
+    fileToSend = "/pathname.csv"
+    username = "aromero.testing"
+    password = "Rocknroll1!2"
 
+    msg = MIMEMultipart()
+    msg["From"] = emailfrom
+    msg["To"] = emailto
+    msg["Subject"] = "help I cannot send an attachment to save my life"
+    msg.preamble = "help I cannot send an attachment to save my life"
+    
+    fp = open(fileToSend)
+    
+    # Note: we should handle calculating the charset
+    attachment = MIMEText(fp.read())
+    fp.close()
+    attachment.add_header("Content-Disposition", "attachment", filename=fileToSend)
+    msg.attach(attachment)
+    
+    server = smtplib.SMTP("smtp.gmail.com:587")
+    server.starttls()
+    server.login(username,password)
+    server.sendmail(emailfrom, emailto, msg.as_string())
+    server.quit()
 
 if __name__ == '__main__':
     app.run()
