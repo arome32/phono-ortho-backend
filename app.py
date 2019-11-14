@@ -29,7 +29,7 @@ def add_user():
   return jsonify(new_user)
 
 def create_csv(user):
-    words = user.words
+    words = user['words']
     print('here')
     file = open('/tmp/pathname.csv','w+')
     file.write(',ORTHO TARGET,PRODUCTION,T/F')
@@ -46,7 +46,7 @@ def create_csv(user):
     for line in file:
         print(line)
     print('finished 2')
-    sendEmail(user.name)
+    sendEmail(user['name'])
     
 def sendEmail(name):
     print('1')
