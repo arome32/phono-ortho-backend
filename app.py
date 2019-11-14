@@ -60,8 +60,8 @@ def sendEmail(name):
     msg = MIMEMultipart()
     msg["From"] = emailfrom
     msg["To"] = emailto
-    msg["Subject"] = name, "Pretest Results"
-    msg.preamble = name, "Pretest Results"
+    msg["Subject"] = (name + " Pretest Results")
+    msg.preamble = (name + " Pretest Results")
     print('3')
 
     fp = open(fileToSend)
