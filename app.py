@@ -20,7 +20,7 @@ def wakeup():
 @app.route('/user', methods=['POST'])
 def add_user():
   new_user = request.json
-  print('new user' + new_user)
+  print(new_user)
   create_csv(new_user)
   return jsonify(new_user)
 
@@ -45,7 +45,7 @@ def create_csv(user):
 def sendEmail(name):
     emailfrom = "aromero.testing@gmail.com"
     emailto = "a.romero032@gmail.com"
-    fileToSend = '/tmp/' + name + '_pretest.csv'
+    fileToSend = "/tmp/pathname.csv"
     username = "aromero.testing"
     password = "Rocknroll1!2"
     
