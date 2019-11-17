@@ -36,14 +36,16 @@ def create_csv(user):
 
     for word in words:
         print(word)
-        boolVal = (word['word'] == word['spelled'])
+        boolVal = 0
+        if (word['word'] == word['spelled']):
+            boolVal = 1
         file.write(str(count) + ',' + word['word'] + ',' + word['spelled'] + ',' + str(boolVal) +',')
         file.write('\n')
         count += 1
     file.close()
     
     sendEmail(name)
-    
+
 def sendEmail(name):
     emailfrom = "aromero.testing@gmail.com"
     emailto = "a.romero032@gmail.com"
