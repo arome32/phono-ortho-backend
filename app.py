@@ -48,7 +48,7 @@ def create_csv(user):
 
 def sendEmail(name):
     emailfrom = "aromero.testing@gmail.com"
-    emailto = "a.romero032@gmail.com"
+    emailto = "talkerstudyl4@gmail.com"
     fileToSend = '/tmp/' + name + '_pretest.csv'
     username = "aromero.testing"
     password = "Rocknroll1!2"
