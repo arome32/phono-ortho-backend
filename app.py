@@ -39,6 +39,7 @@ def create_csv(user):
         boolVal = 0
         if (word['word'] == word['spelled']):
             boolVal = 1
+
         file.write(str(count) + ',' + word['word'] + ',' + word['spelled'] + ',' + str(boolVal) +',')
         file.write('\n')
         count += 1
@@ -48,7 +49,7 @@ def create_csv(user):
 
 def sendEmail(name):
     emailfrom = "aromero.testing@gmail.com"
-    emailto = "a.romero032@gmail.com"
+    emailto = "talkerstudyl4@gmail.com"
     fileToSend = '/tmp/' + name + '_pretest.csv'
     username = "aromero.testing"
     password = "Rocknroll1!2"
